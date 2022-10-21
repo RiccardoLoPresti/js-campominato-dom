@@ -48,3 +48,7 @@ button, select{
 .color{
   background-color: #F9DB6D;
 }
+
+.bomb{
+  background-color:crimson;
+}

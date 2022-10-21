@@ -17,6 +17,8 @@ const container = document.querySelector('.container');
 let squareForRow = 0;
 const NUMBER_BOMS = 3;
 let bomb = [];
+let score = 0;
+
 
 btnPlay.addEventListener('click', play);
 
@@ -32,7 +34,8 @@ function play() {
   //salvo il numero totale dei quadratini
   squareGen(totalSquare);
 
-  bomb = bombGen(NUMBER_BOMS);
+  bomb = bombGen(NUMBER_BOMS,totalSquare);
+  console.log(bomb);
   console.log(bomb);
 }
 
@@ -58,18 +61,37 @@ function squareGen(nSquare){
     square.style.height = `calc(100% / ${squareForRow}`
     container.append(square);
     square.innerText = i + 1;
+
     square.addEventListener('click', function(){
+      
       square.idSq = i + 1;
-      square.classList.add('color')
-      console.log(this.idSq);
+      const elementId = square.idSq
+
+      if(bomb.includes(elementId)){
+        square.classList.add('bomb');
+        const output = document.createElement('div');
+        output.innerHTML = `<span>HAI PERSO! Hai fatto 
+        ${score-1} punti su xxx</span>`;
+        container.append(output)
+      }else{
+        //auemnto score
+        score++
+        console.log('score', score);
+        square.classList.add('color')
+        console.log(this.idSq);
+        if (score === (totalSquare - NUMBER_BOMS)) {
+          console.log('vinto');
+        }
+      }
+      
     })
   }
 }
 
-function bombGen(NUMBER_BOMS){
+function bombGen(NUMBER_BOMS,totalSquare){
   let bombsArray = [];
   do{
-    let bombs = Math.floor(Math.random() * NUMBER_BOMS) + 1;
+    let bombs = Math.floor(Math.random() * totalSquare) + 1;
     if(!bombsArray.includes(bombs)){
       bombsArray.push(bombs);
     }
@@ -78,3 +100,11 @@ function bombGen(NUMBER_BOMS){
 
   return bombsArray;
 }
+
+/*function handlerClick(idSq) {
+  for (let i = 0; i < bomb.length; i++) {
+    let element = bomb[i];
+    return element;
+  }
+}
+console.log(handlerClick(2));*/
