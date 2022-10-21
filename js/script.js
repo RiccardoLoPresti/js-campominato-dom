@@ -39,6 +39,7 @@ function play() {
   console.log(bomb);
 }
 
+
 /**
  * Calcola il numero massimo dei quadratini
  * @param {number} numberSquareForRow 
@@ -74,7 +75,7 @@ function squareGen(nSquare){
         ${score-1} punti su xxx</span>`;
         container.append(output)
       }else{
-        //auemnto score
+        //aumento score
         score++
         console.log('score', score);
         square.classList.add('color')
@@ -83,7 +84,6 @@ function squareGen(nSquare){
           console.log('vinto');
         }
       }
-      
     })
   }
 }
@@ -100,11 +100,3 @@ function bombGen(NUMBER_BOMS,totalSquare){
 
   return bombsArray;
 }
-
-/*function handlerClick(idSq) {
-  for (let i = 0; i < bomb.length; i++) {
-    let element = bomb[i];
-    return element;
-  }
-}
-console.log(handlerClick(2));*/
