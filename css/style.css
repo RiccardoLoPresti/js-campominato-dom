@@ -62,3 +62,10 @@ button, select{
   height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.output{
+  padding-top: 30px;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
