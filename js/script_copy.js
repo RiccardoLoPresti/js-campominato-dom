@@ -79,7 +79,7 @@ function clickEvent(cella, i) {
       const idCella = this.idCella;
       const cella = document.getElementsByClassName('square')
 
-      if(!array.includes(idCella)){
+      if(!array.includes(idCella) && !bombe.includes(idCella)){
         score++;
         cella[i].classList.add('color');
         array.push(idCella);
@@ -90,15 +90,15 @@ function clickEvent(cella, i) {
           console.log('HAI VINTO');
         }
       }
-      
-      console.log('---------->',array);
-      console.log('questo è il punteggio:',score);
-      
-      if(bombe.includes(idCella)){
+      else{
         cella[i].classList.add('bomb')
         haiPerso = true;
         console.log('PERSO');
       }
+      
+      console.log('---------->',array);
+      console.log('questo è il punteggio:',score);
+      
     }
     )
 }
