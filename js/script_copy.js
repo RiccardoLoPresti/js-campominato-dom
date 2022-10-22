@@ -23,6 +23,7 @@ let score = 0;
 btnPlay.addEventListener('click', play);
 
 function play(){
+  score = 0;
   cellePerRiga = document.getElementById('level').value;
   celleTotali = calcoloGriglia(cellePerRiga);
   container.innerHTML ='';
@@ -60,22 +61,7 @@ function generatoreCelle(celleTotali){
     container.append(cella);
     cella.innerText = i + 1;
 
-    cella.addEventListener('click', function(){
-      this.idCella = i + 1;
-      const idCella = this.idCella;
-      const cella = document.getElementsByClassName('square')
-      let array =[];
-      
-      if(bombe.includes(idCella)){
-        cella[i].classList.add('bomb')
-        console.log('PERSO');
-      }else{
-        cella[i].classList.add('color');
-        score++;
-        console.log(score);
-      }
-
-    })
+    clickEvent(cella,i);
   }
 }
 
@@ -84,8 +70,25 @@ function dimensione(cella) {
   cella.style.height = `calc(100% / ${cellePerRiga}`
 }
 
-function endGame() {
-  
+function clickEvent(cella, i) {
+    cella.addEventListener('click', function(){
+    this.idCella = i + 1;
+    const idCella = this.idCella;
+    const cella = document.getElementsByClassName('square')
+
+    let array =[];
+
+    cella[i].classList.add('color');
+    array.push('idCella');
+    score++;
+    console.log('---------->',array);
+    console.log('questo è il punteggio:',score);
+    
+    if(bombe.includes(idCella)){
+      cella[i].classList.add('bomb')
+      console.log('PERSO');
+    }
+  })
 }
 
 
