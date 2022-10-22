@@ -19,14 +19,16 @@ let celleTotali = 0;
 const numeroBombeTotali = 3;
 let bombe = [];
 let score = 0;
+let array =[];
 
 btnPlay.addEventListener('click', play);
 
 function play(){
-  score = 0;
+  score = 0
+  array =[]
+  container.innerHTML ='';
   cellePerRiga = document.getElementById('level').value;
   celleTotali = calcoloGriglia(cellePerRiga);
-  container.innerHTML ='';
   bombe = generatoreBombe(numeroBombeTotali,celleTotali)
 
   generatoreCelle(celleTotali);
@@ -35,6 +37,7 @@ function play(){
   console.log(bombe);
   console.log(celleTotali);
 }
+
 
 function calcoloGriglia(cellePerRiga) {
   return celleTotali = Math.pow(cellePerRiga, 2);
@@ -72,23 +75,32 @@ function dimensione(cella) {
 
 function clickEvent(cella, i) {
     cella.addEventListener('click', function(){
-    this.idCella = i + 1;
-    const idCella = this.idCella;
-    const cella = document.getElementsByClassName('square')
+      this.idCella = i + 1;
+      const idCella = this.idCella;
+      const cella = document.getElementsByClassName('square')
 
-    let array =[];
-
-    cella[i].classList.add('color');
-    array.push('idCella');
-    score++;
-    console.log('---------->',array);
-    console.log('questo è il punteggio:',score);
-    
-    if(bombe.includes(idCella)){
-      cella[i].classList.add('bomb')
-      console.log('PERSO');
+      if(!array.includes(idCella)){
+        score++;
+        cella[i].classList.add('color');
+        array.push(idCella);
+        let vincita = celleTotali - numeroBombeTotali;
+        console.log("valore vincita : ", vincita);
+        console.log("score value:", score);
+        if (score == vincita) {
+          console.log('HAI VINTO');
+        }
+      }
+      
+      console.log('---------->',array);
+      console.log('questo è il punteggio:',score);
+      
+      if(bombe.includes(idCella)){
+        cella[i].classList.add('bomb')
+        haiPerso = true;
+        console.log('PERSO');
+      }
     }
-  })
+    )
 }
 
 
