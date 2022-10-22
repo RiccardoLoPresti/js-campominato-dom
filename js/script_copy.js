@@ -63,7 +63,6 @@ function generatoreCelle(celleTotali){
     dimensione(cella)
     container.append(cella);
     cella.innerText = i + 1;
-
     clickEvent(cella,i);
   }
 }
@@ -87,20 +86,35 @@ function clickEvent(cella, i) {
         console.log("valore vincita : ", vincita);
         console.log("score value:", score);
         if (score == vincita) {
-          console.log('HAI VINTO');
+          win()
         }
       }
-      else{
+      if(bombe.includes(idCella)){
         cella[i].classList.add('bomb')
-        haiPerso = true;
-        console.log('PERSO');
+        gameOver();
       }
-      
-      console.log('---------->',array);
-      console.log('questo è il punteggio:',score);
-      
-    }
-    )
+    })
 }
 
+function gameOver() {
+  const output = document.createElement('div');
+  const layover = document.createElement('div');
+  output.innerHTML = `
+    <span>HAI PERSO! Hai fatto ${score} punti su ...</span>
+  `;
+  container.append(output);
+  layover.className = 'layover';
+  container.prepend(layover);
+ 
+}
 
+function win(){
+  const output = document.createElement('div');
+  const layover = document.createElement('div');
+  output.innerHTML = `
+    <span>HAI VINTO!!</span>
+  `;
+  container.append(output)
+  layover.className = 'layover';
+  container.prepend(layover);
+}
