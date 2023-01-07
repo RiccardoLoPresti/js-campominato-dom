@@ -13,9 +13,17 @@ body{
 
 header{
   display: flex;
+  height: 80px;
   justify-content: space-between;
   box-shadow: 0 0 50px 10px rgba(223, 223, 223, 0.12);
   padding: 20px;
+}
+
+footer{
+  height: 50px;
+  background-color: black;
+  text-align: center;
+  padding: 10px;
 }
 
 select{
@@ -49,6 +57,14 @@ button:hover{
   color: rgb(255, 255, 255);
 }
 
+a{
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+a:hover{
+  text-decoration: underline;
+}
 .main-wrapper{
   display: flex;
   justify-content: center;
@@ -62,6 +78,7 @@ button:hover{
   align-content: flex-start;
   width: 500px;
   height: 500px;
+  margin-bottom: calc(100vh - 500px - 180px);
   position: relative;
 }
 
